@@ -14,10 +14,18 @@ class CreateContact extends Component {
         };
     }
 
+    resetForm() {
+        for (var member in this.state) {
+            if(member !== "modal") 
+                this.setState({member: ''});
+        }
+    }
+
     toggleModal() {
         this.setState({
           modal: !this.state.modal
         });
+        this.resetForm();
     }
 
     handleChange(e) {
@@ -34,7 +42,6 @@ class CreateContact extends Component {
         // contact.key = this.state.first_name.charAt(0)
         this.toggleModal();
         this.props.createContact(contact);
-        // this.props.createContact(this.state);
     }
 
     render() {

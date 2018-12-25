@@ -142,11 +142,30 @@ nav.topbar {
 .contact__list {
   width: 90%;
   margin: 15px auto; }
+  .contact__list .empty-contact {
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-basis: 50%; }
+    .contact__list .empty-contact img {
+      width: 55%; }
+    .contact__list .empty-contact p {
+      border: none;
+      border-left: 4px solid #390c98;
+      background: #cbc6d8;
+      color: #FFF;
+      padding: 1.5rem;
+      font-size: 1.2rem; }
+      .contact__list .empty-contact p i {
+        padding: 0px 10px 0 0; }
   .contact__list li {
     padding: 10px 30px;
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
+    cursor: pointer;
     align-items: center; }
     .contact__list li img {
       width: 50px;
@@ -192,6 +211,17 @@ nav.topbar {
         content: attr(data-label);
         flex-basis: 50%;
         text-align: right; } }
+
+.contact-view .modal-header div {
+  display: flex;
+  flex-basis: 50%; }
+  .contact-view .modal-header div:nth-child(1) {
+    justify-content: flex-start; }
+  .contact-view .modal-header div:nth-child(2) {
+    cursor: pointer;
+    justify-content: flex-end; }
+    .contact-view .modal-header div:nth-child(2) i {
+      padding-right: 15px; }
 
 .search__form input {
   outline: 0;

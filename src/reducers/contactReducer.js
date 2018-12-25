@@ -23,13 +23,13 @@ const createContact = (prevState, newState) => {
 
 export default (state = [], action) => {
     
-    let initial = {
-        email: "akinolu52@gmail.com",
-        first_name: "Emmanuel",
-        last_name: "Akinyemi",
-        phone: "9055685712",
-    }
-    state.push(initial);
+    // let initial = {
+    //     email: "akinolu52@gmail.com",
+    //     first_name: "Emmanuel",
+    //     last_name: "Akinyemi",
+    //     phone: "9055685712",
+    // }
+    // state.push(initial);
 
     switch (action.type) {
         case actionTypes.CREATE_CONTACT:

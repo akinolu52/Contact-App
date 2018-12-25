@@ -45,12 +45,36 @@
     width: 90%;
     margin: 15px auto;
     // border: 1px solid red;
+    .empty-contact {
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-basis: 50%;
+        img {
+            width: 55%;
+        }
+        p{
+            border: none;
+            border-left: 4px solid #390c98;
+            background: #cbc6d8;
+            color: #FFF;
+            padding: 1.5rem;
+            font-size: 1.2rem;
+            i {
+                padding: 0px 10px 0 0;
+                
+            }
+        }
+    }
    
     li {
         padding: 10px 30px;
         display: flex;
         justify-content: space-between;
         margin-bottom: 15px;
+        cursor: pointer;
         align-items: center;
         img {
             width: 50px;
@@ -125,4 +149,21 @@
     
 }
 
-
+.contact-view {
+    .modal-header{
+        div{
+            display: flex;
+            flex-basis: 50%;
+            &:nth-child(1) {
+                justify-content: flex-start;
+            }
+            &:nth-child(2) {
+                cursor: pointer;
+                justify-content: flex-end;
+                i {
+                    padding-right: 15px;
+                }
+            }
+        }
+    }
+}

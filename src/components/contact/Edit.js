@@ -57,7 +57,7 @@ class EditContact extends Component {
                                 <div className="input-group">
                                     <div className="input-group-prepend">
                                         <span className="input-group-text">
-                                        <i className="zmdi zmdi-place" />                                                                            
+                                        <i className="zmdi zmdi-city-alt" />                                                                            
                                         </span>
                                     </div>
                                     <input type="text" ref="company" placeholder="Company" defaultValue={this.props.data.company} onChange={this.handleChange} />                                
