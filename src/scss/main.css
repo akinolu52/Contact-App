@@ -56,7 +56,8 @@ ul li {
         .sidebar ul li:first-child + li {
           border-top: 1px solid #ccc; }
       .sidebar ul li i {
-        color: #8d8888; }
+        color: #8d8888;
+        margin-right: .5rem; }
 
 nav.topbar {
   color: #fff;
@@ -323,6 +324,9 @@ nav.topbar {
     border-style: none; }
     .modal-content .btn-style button:first-child {
       margin-right: 20px; }
+
+.error {
+  border-bottom: 2px solid red !important; }
 
 .modal {
   display: none;

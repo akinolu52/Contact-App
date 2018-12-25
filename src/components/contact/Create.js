@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import * as contactAction from '../../actions/contactAction';
+import {validate} from './validate';
 
 class CreateContact extends Component {
     constructor(props) {
@@ -39,9 +40,16 @@ class CreateContact extends Component {
         // perfomr validation
         let contact = {...this.state};
         delete contact.modal;
+        
+        let errors = validate(contact);
+        this.setState(errors);
+        
+        if(Object.keys(errors).length === 0 && errors.constructor === Object) {
+            this.toggleModal();
+            this.props.createContact(contact);
+        }
+        // console.log(errors);
         // contact.key = this.state.first_name.charAt(0)
-        this.toggleModal();
-        this.props.createContact(contact);
     }
 
     render() {
@@ -56,12 +64,14 @@ class CreateContact extends Component {
                                     <div className="input-group-prepend">
                                         <span className="input-group-text">@</span>
                                     </div>
-                                    <input type="text" name="first_name" placeholder="First name" onChange={this.handleChange} />
-                                    <input type="text" name="last_name" placeholder="Last name" onChange={this.handleChange} />                           
+                                    <input type="text" name="first_name" className={ this.state.first_name_error ? "error" : ""} placeholder="First name" onChange={this.handleChange} />
+                                    <input type="text" name="last_name" className={ this.state.last_name_error ? "error" : ""} placeholder="Last name" onChange={this.handleChange} />                           
                                 </div>
                                 <div className="input-group">
                                     <div className="input-group-prepend">
-                                        <span className="input-group-text">@</span>
+                                        <span className="input-group-text">
+                                        <i className="zmdi zmdi-city-alt" />
+                                        </span>
                                     </div>
                                     <input type="text" name="company" placeholder="Company" onChange={this.handleChange} />                                
                                     <input type="text" name="job_title" placeholder="Job title" onChange={this.handleChange} />
@@ -72,7 +82,7 @@ class CreateContact extends Component {
                                             <i className="zmdi zmdi-email" />                                    
                                         </span>
                                     </div>
-                                    <input type="email" name="email" placeholder="Email" onChange={this.handleChange} />
+                                    <input type="email" name="email" className={ this.state.email_error ? "error" : ""} placeholder="Email" onChange={this.handleChange} />
                                     <label>Email</label>
                                 </div>
                                 <div className="input-group">
@@ -81,7 +91,7 @@ class CreateContact extends Component {
                                             <i className="zmdi zmdi-phone" />
                                         </span>
                                     </div>
-                                    <input type="tel" name="phone" placeholder="Phone" onChange={this.handleChange} />
+                                    <input type="tel" name="phone" className={ this.state.phone_error ? "error" : ""} placeholder="Phone" onChange={this.handleChange} />
                                 </div>
                                 <div className="input-group">
                                     <div className="input-group-prepend">

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import * as contactAction from '../../actions/contactAction';
-
+import {validate} from './validate';
 class EditContact extends Component {
     constructor(props) {
         super(props);
@@ -34,9 +34,12 @@ class EditContact extends Component {
         contact[field] = this.refs[field].value;
         }
         // console.log(contact)
-
-        this.toggleModal();
-        this.props.editContact(contact, this.props.index);
+        let errors = validate(contact);
+        this.setState(errors);
+        if(Object.keys(errors).length === 0 && errors.constructor === Object) {        
+            this.toggleModal();
+            this.props.editContact(contact, this.props.index);
+        }
     }
 
     render() {
@@ -51,8 +54,8 @@ class EditContact extends Component {
                                     <div className="input-group-prepend">
                                         <span className="input-group-text">@</span>
                                     </div>
-                                    <input type="text" ref="first_name" placeholder="First name" defaultValue={this.props.data.first_name} onChange={this.handleChange} />
-                                    <input type="text" ref="last_name" placeholder="Last name" defaultValue={this.props.data.last_name} onChange={this.handleChange} />                           
+                                    <input type="text" ref="first_name" placeholder="First name" className={ this.state.first_name_error ? "error" : ""} defaultValue={this.props.data.first_name} onChange={this.handleChange} />
+                                    <input type="text" ref="last_name" placeholder="Last name" className={ this.state.last_name_error ? "error" : ""} defaultValue={this.props.data.last_name} onChange={this.handleChange} />                           
                                 </div>
                                 <div className="input-group">
                                     <div className="input-group-prepend">
@@ -69,7 +72,7 @@ class EditContact extends Component {
                                             <i className="zmdi zmdi-email" />                                    
                                         </span>
                                     </div>
-                                    <input type="email" ref="email" placeholder="Email" defaultValue={this.props.data.email} onChange={this.handleChange} />
+                                    <input type="email" ref="email" placeholder="Email" className={ this.state.email_error ? "error" : ""} defaultValue={this.props.data.email} onChange={this.handleChange} />
                                 </div>
                                 <div className="input-group">
                                     <div className="input-group-prepend">
@@ -77,7 +80,7 @@ class EditContact extends Component {
                                             <i className="zmdi zmdi-phone" />
                                         </span>
                                     </div>
-                                    <input type="tel" ref="phone" placeholder="Phone" defaultValue={this.props.data.phone} onChange={this.handleChange} />
+                                    <input type="tel" ref="phone" placeholder="Phone" className={ this.state.phone_error ? "error" : ""} defaultValue={this.props.data.phone} onChange={this.handleChange} />
                                 </div>
                                 <div className="input-group">
                                     <div className="input-group-prepend">
@@ -105,7 +108,7 @@ class EditContact extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        editContact: contact => dispatch(contactAction.editContact(contact))
+        editContact: (contact, index) => dispatch(contactAction.editContact(contact, index))
     }
 }
 

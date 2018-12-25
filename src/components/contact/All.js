@@ -35,18 +35,19 @@ class AllContact extends Component {
         });
         this.toggleModal();
     }
+
     renderList(data, index){
         return(
-            <li className="table-row" title="View" onClick={(e) => this.showContact(data, index)} key={index}>
+            <li className="table-row" title="View" key={index}>
                 <div className="table-col table-col-0" data-label="index">
                     {data.group}
                 </div>
-                <div className="table-col table-col-1" data-label="Image">
+                <div onClick={(e) => this.showContact(data, index)} className="table-col table-col-1" data-label="Image">
                     <img src={"https://robohash.org/" + data.first_name} alt={data.first_name+" "+data.last_name} />
                 </div>
-                <div className="table-col table-col-2" data-label="FullName">{data.first_name+" "+data.last_name}</div>
-                <div className="table-col table-col-3" data-label="Email">{data.email}</div>
-                <div className="table-col table-col-4" data-label="Phone">{data.phone}</div>
+                <div onClick={(e) => this.showContact(data, index)} className="table-col table-col-2" data-label="FullName">{data.first_name+" "+data.last_name}</div>
+                <div onClick={(e) => this.showContact(data, index)} className="table-col table-col-3" data-label="Email">{data.email}</div>
+                <div onClick={(e) => this.showContact(data, index)} className="table-col table-col-4" data-label="Phone">{data.phone}</div>
                 <div className="table-col table-col-5" data-label="actions">
                     <i title="Star" className="zmdi zmdi-star-outline"/>               
                     {/* <i title="Edit" className="zmdi zmdi-edit"/> */}
@@ -130,7 +131,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        deleteContact: index =>dispatch(contactAction.deleteContact(index))
+        deleteContact: index => dispatch(contactAction.deleteContact(index))
     }
   };
 
