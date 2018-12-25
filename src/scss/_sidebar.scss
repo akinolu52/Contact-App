@@ -1,0 +1,40 @@
+%active-styles {
+    color: #390c98;
+    font-weight: bolder;
+}
+.sidebar {
+    -ms-flex: 0 0 16.666667%;
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+    border-right: 1px solid #ccc;
+
+    ul {
+        // border: 1px solid #000;
+        display: flex;
+        flex-direction: column;
+        flex: 0 0 100%;
+        flex-wrap: wrap;
+        li {
+            // width: 100%;
+            padding: 1rem 0 1rem 2rem;
+            color: #999;
+            font-weight: bold;
+            
+            &:first-child{
+                i {
+                    @extend %active-styles
+                }
+                @extend %active-styles;
+                background: #ede5fd;
+                margin: 0.7rem 0 0.5rem 0;
+                + li {
+                    border-top: 1px solid #ccc;
+        
+                }
+            }
+            i {
+                color: #8d8888;
+            }
+        }
+    }
+}

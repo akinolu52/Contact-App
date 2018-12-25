@@ -1,0 +1,128 @@
+// .content {
+//     display: flex;
+//     flex-direction: row;
+//     flex: auto;
+//     border-right: 1px solid #000;
+// }
+// .container-fluid {
+//     display: -ms-flexbox;
+//     display: flex;
+//     -ms-flex-wrap: wrap;
+//     flex-wrap: wrap;
+//     -ms-flex-align: center;
+//     align-items: center;
+//     -ms-flex-pack: justify;
+//     justify-content: space-between;
+// }
+  
+.content {
+    -ms-flex: 0 0 83.333333%;
+    flex: 0 0 83.333333%;
+    max-width: 83.333333%;
+    // border: 1px solid red;
+    
+    padding-right: 15px;
+    padding-left: 15px;
+
+    .float-btn {
+        position:fixed;
+        width:60px;
+        height:60px;
+        bottom:40px;
+        right:40px;
+        background-color: #f2506d;
+        color:#FFF;
+        border-radius:50px;
+        text-align:center;
+        box-shadow: 2px 2px 3px #999;
+        i {
+            margin-top:22px;
+        }
+    }
+
+}
+.contact__list {
+    width: 90%;
+    margin: 15px auto;
+    // border: 1px solid red;
+   
+    li {
+        padding: 10px 30px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        align-items: center;
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        .zmdi {
+            padding: 0 1.2rem 0 0;
+            color: #928a8a;
+            cursor: pointer;
+        }
+        .table-header {
+            background-color: #95A5A6;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .table-col-0 {
+            flex-basis: 5%
+        }
+        .table-col-1 {
+            flex-basis: 10%;
+        }
+        .table-col-2 {
+            font-weight: bold;
+            flex-basis: 30%;
+        }
+        .table-col-3 {
+            flex-basis: 20%;
+        }
+        .table-col-4 {
+            flex-basis: 20%;
+        }
+        .table-col-5 {
+            flex-basis: 15%;
+        }
+        
+            &:hover {
+                background: #fafafa;
+                // .zmdi {
+
+                // }
+            }
+        
+      }
+      
+      
+      @media all and (max-width: 767px) {
+        .table-header {
+          display: none;
+        }
+        li {
+          display: block;
+        }
+        .table-col {
+          
+          flex-basis: 100%;
+          
+        }
+        .table-col {
+          display: flex;
+          padding: 10px 0;
+          &:before {
+            color: #6C7A89;
+            padding-right: 10px;
+            content: attr(data-label);
+            flex-basis: 50%;
+            text-align: right;
+          }
+        }
+      }
+    
+}
+
+

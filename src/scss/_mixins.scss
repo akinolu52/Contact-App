@@ -1,0 +1,26 @@
+/* MEDIA QUERIES ----------- */
+
+$breakpoint-tiny: 460px;
+$breakpoint-small: 600px;
+
+@mixin screen($size) {
+    @if $size=='tiny' {
+        @media screen and (max-width: $breakpoint-tiny) {
+            @content;
+        }
+    }
+    @if $size=='small' {
+        @media screen and (max-width: $breakpoint-small) {
+            @content;
+        }
+    }
+}
+
+@mixin placeholder {
+    ::-webkit-input-placeholder {@content}
+    :-moz-placeholder           {@content}
+    ::-moz-placeholder          {@content}
+    :-ms-input-placeholder      {@content}  
+}
+
+
