@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import * as contactAction from '../../actions/contactAction';
 import EditContact from './Edit';
-// import CreateContact from './Create';
+import {toastr} from 'react-redux-toastr';
 
 class AllContact extends Component {
     constructor(props) {
@@ -35,6 +35,18 @@ class AllContact extends Component {
         });
         this.toggleModal();
     }
+    starContact(data, index) {
+        // star the contact from the ui and then edit the contact by setting star as true
+        // this.setState(data, (e)=>consol.log(this.state))
+        this.setState({
+            name: data.first_name + " " +data.last_name,
+            company: data.company,
+            email: data.email,
+            phone: data.phone,
+            index
+        });
+        this.toggleModal();
+    }
 
     renderList(data, index){
         return(
@@ -49,12 +61,11 @@ class AllContact extends Component {
                 <div onClick={(e) => this.showContact(data, index)} className="table-col table-col-3" data-label="Email">{data.email}</div>
                 <div onClick={(e) => this.showContact(data, index)} className="table-col table-col-4" data-label="Phone">{data.phone}</div>
                 <div className="table-col table-col-5" data-label="actions">
-                    <i title="Star" className="zmdi zmdi-star-outline"/>               
+                    <i title="Star" onClick={(e) => this.starContact(data, index)} className="zmdi zmdi-star-outline"/>               
                     {/* <i title="Edit" className="zmdi zmdi-edit"/> */}
                     <EditContact data={data} index={index} />                    
                     <i title="View" className="zmdi zmdi-more-vert"/>               
                 </div>
-
             </li>
         )
     }
@@ -69,6 +80,9 @@ class AllContact extends Component {
                                 <i className="zmdi zmdi-alert-circle-o"/>
                                 It's empty here, click on the plus button to add new contacts...
                             </p>
+                            <button
+          onClick={() => toastr.success('The title', 'The message')}
+          type="button">Toastr Success</button>
                         </div>
                     }
                     {this.props.contacts.map((contact, i) => this.renderList(contact, i))}

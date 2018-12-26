@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import * as contactAction from '../../actions/contactAction';
 import {validate} from './validate';
+import {toastr} from 'react-redux-toastr';
 
 class CreateContact extends Component {
     constructor(props) {
@@ -47,6 +48,19 @@ class CreateContact extends Component {
         if(Object.keys(errors).length === 0 && errors.constructor === Object) {
             this.toggleModal();
             this.props.createContact(contact);
+        } else {
+            if(errors.first_name_error){
+                toastr.error(errors.first_name_title, errors.first_name_error)
+            }
+            if(errors.last_name_error){
+                toastr.error(errors.last_name_title, errors.last_name_error)
+            }
+            if(errors.email_name_error){
+                toastr.error(errors.email_name_title, errors.email_name_error)
+            }
+            if(errors.phone_name_error){
+                toastr.error(errors.phone_name_title, errors.phone_name_error)
+            }
         }
         // console.log(errors);
         // contact.key = this.state.first_name.charAt(0)
