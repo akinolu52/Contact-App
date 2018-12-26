@@ -25,7 +25,6 @@ class AllContact extends Component {
         toastr.success("success", "Contact Deleted!")
     }
     showContact(data, index) {
-        // this.setState(data, (e)=>consol.log(this.state))
         this.setState({
             data,
             index
@@ -38,6 +37,7 @@ class AllContact extends Component {
         this.props.starContact(data, index);
         toastr.info(`${data.first_name + " " + data.last_name}`, "Contact Stared!")
     }
+
     renderList(data, index){
         return(
             <li className="table-row" title="View" key={index}>
@@ -58,6 +58,7 @@ class AllContact extends Component {
             </li>
         )
     }
+
     render() {
         return(
             <Fragment>
@@ -83,7 +84,7 @@ class AllContact extends Component {
                                 <div>
                                     <i title="Star contact" onClick={(e) => this.starContact(this.state.data, this.state.index)} className={ this.state.data.star ? "zmdi zmdi-star star-active" : "zmdi zmdi-star-outline" }/> 
                                     {/* <EditContact data={this.state.data} index={this.state.index} /> */}
-                                    <i title="" className="zmdi zmdi-edit"/> 
+                                    {/* <i title="" className="zmdi zmdi-edit"/>  */}
                                     <i title="Delete contact" onClick={(e) => this.deleteContact(e, this.state.index)} className="zmdi zmdi-more-vert"/> 
                                     <i title="Close modal" onClick={this.toggleModal} className="zmdi zmdi-close"/> 
                                 </div>

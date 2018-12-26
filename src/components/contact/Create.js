@@ -82,10 +82,14 @@ class CreateContact extends Component {
         // contact.key = this.state.first_name.charAt(0)
     }
 
+    onModalClick = (e) => {
+        console.log(e.currentTarget);
+    }
+
     render() {
         return(
             <Fragment>
-                <div id="myModal" className={this.state.modal ? "modal show" : "modal"}>
+                <div id="myModal" onClick={this.onModalClick} className={this.state.modal ? "modal show" : "modal"}>
                     <div className="modal-content">
                         <div className="modal-header">Create Contact</div>
                         <div className="modal-body">

@@ -125,13 +125,11 @@ nav.topbar {
     nav.topbar .topbar__inner .search__form {
       flex: auto;
       height: 40px;
-      align-self: center; }
-      nav.topbar .topbar__inner .search__form div:last-child {
-        width: 100%;
-        background: rgba(255, 255, 255, 0.25);
-        outline: 1px solid transparent;
-        display: flex;
-        border-radius: .25rem; }
+      align-self: center;
+      background: rgba(255, 255, 255, 0.25);
+      outline: 1px solid transparent;
+      display: flex;
+      border-radius: .25rem; }
       nav.topbar .topbar__inner .search__form #search {
         background: url(/images/search.png) no-repeat scroll 7px 7px;
         padding-left: 50px;
@@ -432,7 +430,9 @@ nav.topbar {
   width: 50%;
   animation-name: animatetop;
   animation-duration: 0.4s;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  z-index: 2;
+  position: relative; }
   @media screen and (max-width: 600px) {
     .modal-content {
       width: 80%; } }

@@ -17,12 +17,12 @@ const createContact = (prevState, newState) => {
     return [
         ...prevState, Object.assign({}, newState) 
     ];
-}
+};
 
 const updateContact = (state, action) => {
     let newState = deleteContact(state, action.id);
     return createContact(newState, action.contact);
-}
+};
 
 export default (state = [], action) => {
     switch (action.type) {
@@ -40,12 +40,18 @@ export default (state = [], action) => {
 
         case actionTypes.SEARCH_CONTACT:
             let name = action.name.toLowerCase();
-            let contacts = state.filter(function(el) {
-                let el_name = el.first_name+" "+el.last_name;
-                let searchValue = el_name.toLowerCase();
-                return searchValue.indexOf(name) !== -1;
-            });
-            return contacts;
+            let newState = state;
+            if (name === "") {
+                return state;
+            }
+            else{
+                let contacts = newState.filter(function(el) {
+                    let el_name = el.first_name+" "+el.last_name;
+                    let searchValue = el_name.toLowerCase();
+                    return searchValue.indexOf(name) !== -1;
+                });
+                return contacts;
+            }
 
         default:
             return state;

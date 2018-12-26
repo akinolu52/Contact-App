@@ -49,13 +49,13 @@ nav.topbar {
             flex: auto;
             height: 40px;
             align-self: center;
-            div:last-child {
-                width: 100%;
+            // div:last-child {
+                // width: 100%;
                 background: rgba(255,255,255,.25);
                 outline: 1px solid transparent;
                 display: flex;
                 border-radius: .25rem;
-            }
+            // }
             #search {
                 background: url(/images/search.png) no-repeat scroll 7px 7px;
                 padding-left:50px;
