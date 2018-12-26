@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import * as contactAction from '../../actions/contactAction';
 import {validate} from './validate';
 import {toastr} from 'react-redux-toastr';
-
+import {ReactTelephoneInput} from 'react-telephone-input';
+require('react-telephone-input/lib/withStyles');
 class CreateContact extends Component {
     constructor(props) {
         super(props);
@@ -11,6 +12,8 @@ class CreateContact extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
+        this.handleTelChange = this.handleTelChange.bind(this);
+        this.handleTelBlur   = this.handleTelBlur .bind(this);
         this.state = {
            modal: false 
         };
@@ -30,6 +33,25 @@ class CreateContact extends Component {
         this.resetForm();
     }
 
+    handleTelChange(telNumber, selectedCountry) {
+        this.setState({
+            phone: telNumber
+        });
+        // console.log('input changed. number: ', telNumber, 'selected country: ', selectedCountry)
+    }
+
+    handleTelBlur(telNumber, selectedCountry) {
+        this.setState({
+            phone: telNumber
+        });
+        // console.log(
+        //     'Focus off the ReactTelephoneInput component. Tel number entered is: ',
+        //     telNumber,
+        //     ' selected country is: ',
+        //     selectedCountry
+        //   )
+    }
+
     handleChange(e) {
         this.setState({
             [e.target.name]: e.target.value
@@ -41,7 +63,8 @@ class CreateContact extends Component {
         // perfomr validation
         let contact = {...this.state};
         delete contact.modal;
-        
+        contact.phone = contact.phone.trim().replace(/-/g, '');
+
         let errors = validate(contact);
         this.setState(errors);
         
@@ -63,14 +86,13 @@ class CreateContact extends Component {
                 toastr.error(errors.phone_title, errors.phone_error);
             }
         }
-        // console.log(errors);
         // contact.key = this.state.first_name.charAt(0)
     }
 
     render() {
         return(
             <Fragment>
-                <div className={this.state.modal ? "modal show" : "modal"}>
+                <div id="myModal" onClick={() => console.log('clk')} className={this.state.modal ? "modal show" : "modal"}>
                     <div className="modal-content">
                         <div className="modal-header">Create Contact</div>
                         <div className="modal-body">
@@ -105,7 +127,12 @@ class CreateContact extends Component {
                                             <i className="zmdi zmdi-phone" />
                                         </span>
                                     </div>
-                                    <input type="tel" name="phone" className={ this.state.phone_error ? "error" : ""} placeholder="Phone" onChange={this.handleChange} />
+                                    <ReactTelephoneInput
+                                        defaultCountry="ng"
+                                        flagsImagePath="/images/flags.png"
+                                        onChange={this.handleTelChange}
+                                        onBlur={this.handleTelBlur}
+                                    />
                                 </div>
                                 <div className="input-group">
                                     <div className="input-group-prepend">

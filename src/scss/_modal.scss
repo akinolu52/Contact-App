@@ -19,19 +19,16 @@
   /* Modal Content/Box */
   .modal-content {
       display: flex;
-    // flex-basis: 50%;
-    // flex: 0 0 50%;
-    // align-items: center;
-    // justify-content: center;
     flex-wrap: wrap;
     background-color: #fefefe;
-    margin: 10% auto; /* 15% from the top and centered */
-    // padding: 20px;
-    // border: 1px solid red;
+    margin: 10% auto; 
     width: 50%; 
     animation-name: animatetop;
     animation-duration: 0.4s;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    @include screen("small") {
+      width: 80%; 
+    }
   }
 
 .modal-header {
@@ -45,17 +42,10 @@
 }
   
   /* Modal Body */
-  .modal-body {
+.modal-body {
       flex: 0 0 90%; 
       padding: 2px 16px;
 }
-  
-  /* Modal Footer */
-  .modal-footer {
-    padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
-  }
   
   /* Add Animation */
   @keyframes animatetop {

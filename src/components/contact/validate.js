@@ -18,9 +18,6 @@ export const validate = val => {
     if (!val.phone) {
         errors.phone_error = 'Phone number is a required field';
         errors.phone_title = 'Required';
-    } else if (!val.phone.match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)) {
-        errors.phone_error = 'Phone format is incorrect';
-        errors.phone_title = 'Required';
-    } 
+    }
     return errors;
 };

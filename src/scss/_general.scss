@@ -7,6 +7,7 @@ ol{
 }
 body {
     width: 100%;
+    font-family: 'Roboto', sans-serif;
 }
 ul{
     li {
@@ -25,32 +26,22 @@ ul{
     flex-grow: 1;
     max-width: 100%;
     width: 100%;
-
-    // padding-right: 15px;
-    // padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
-
+    @include screen("small") {
+        flex-direction: column;
+    }
 }
 
-// .row {
-//     display: -ms-flexbox;
-//     display: flex;
-//     -ms-flex-wrap: wrap;
-//     flex-wrap: wrap;
-//     margin-right: -15px;
-//     margin-left: -15px;
-// }
-
 .sidebar, .content {
-    
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-
-    position: relative;
+    // position: relative;
     width: 100%;
-    // padding-right: 15px;
-    // padding-left: 15px;
+}
+.star-active {
+    color: #f2506d !important;
+    font-weight: bold;
 }

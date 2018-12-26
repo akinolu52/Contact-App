@@ -19,7 +19,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="%PUBLIC_URL%/css/material-design-iconic-font.min.css">
     <title>Contact App</title>
   </head>
@@ -38,5 +38,16 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      let modal = document.getElementById('myModal');
+      window.onclick = function(event) {
+        // console.log(modal)
+        // console.log(event.target.id)
+        if (event.target.id == "myModal") { 
+          // console.log('kk')
+          // modal.style.display = "none";
+        }
+      }
+    </script>
   </body>
 </html>

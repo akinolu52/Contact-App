@@ -1,5 +1,4 @@
 import * as actionTypes from '../actions/actionType';
-
 // const formatOutput = (data) => {
 //     let result = data.reduce((r, e) => {
 //         let group = e.first_name[0];
@@ -7,7 +6,6 @@ import * as actionTypes from '../actions/actionType';
 //         else r[group].children.push(e);
 //         return r;
 //     }, {});
-
 //     return Object.values(result);
 // };
 
@@ -21,6 +19,11 @@ const createContact = (prevState, newState) => {
     ];
 }
 
+const updateContact = (state, action) => {
+    let newState = deleteContact(state, action.id);
+    return createContact(newState, action.contact);
+}
+
 export default (state = [], action) => {
 
     switch (action.type) {
@@ -28,12 +31,14 @@ export default (state = [], action) => {
             return createContact(state, action.contact);
 
         case actionTypes.EDIT_CONTACT:
-            let newState = deleteContact(state, action.id);
-            return createContact(newState, action.contact);
+            return updateContact(state, action);
 
         case actionTypes.DELETE_CONTACT:
             return deleteContact(state, action.id);
-            
+
+        case actionTypes.STAR_CONTACT:
+            return updateContact(state, action);
+
         default:
             return state;
     }

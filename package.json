@@ -13,8 +13,8 @@
     "react-redux": "^6.0.0",
     "react-redux-toastr": "^7.4.5",
     "react-scripts": "2.1.1",
-    "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "react-telephone-input": "^4.73.3",
+    "redux": "^4.0.1"
   },
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",

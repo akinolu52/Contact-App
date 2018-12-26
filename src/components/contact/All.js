@@ -27,42 +27,32 @@ class AllContact extends Component {
     showContact(data, index) {
         // this.setState(data, (e)=>consol.log(this.state))
         this.setState({
-            name: data.first_name + " " +data.last_name,
-            company: data.company,
-            email: data.email,
-            phone: data.phone,
+            data,
             index
         });
         this.toggleModal();
     }
     starContact(data, index) {
-        // star the contact from the ui and then edit the contact by setting star as true
-        // this.setState(data, (e)=>consol.log(this.state))
-        this.setState({
-            name: data.first_name + " " +data.last_name,
-            company: data.company,
-            email: data.email,
-            phone: data.phone,
-            index
-        });
-        this.toggleModal();
+        // edit the contact by setting star as true
+        data.star = true;
+        this.props.starContact(data, index);
+        toastr.info(`${data.first_name + " " + data.last_name}`, "Contact Stared!")
     }
 
     renderList(data, index){
         return(
             <li className="table-row" title="View" key={index}>
                 <div className="table-col table-col-0" data-label="index">
-                    {data.group}
+                    {data.star}
                 </div>
                 <div onClick={(e) => this.showContact(data, index)} className="table-col table-col-1" data-label="Image">
-                    <img src={"https://robohash.org/" + data.first_name} alt={data.first_name+" "+data.last_name} />
+                    <img src={"https://robohash.org/" + data.first_name + data.last_name} alt={data.first_name+" "+data.last_name} />
                 </div>
                 <div onClick={(e) => this.showContact(data, index)} className="table-col table-col-2" data-label="FullName">{data.first_name+" "+data.last_name}</div>
                 <div onClick={(e) => this.showContact(data, index)} className="table-col table-col-3" data-label="Email">{data.email}</div>
                 <div onClick={(e) => this.showContact(data, index)} className="table-col table-col-4" data-label="Phone">{data.phone}</div>
                 <div className="table-col table-col-5" data-label="actions">
-                    <i title="Star" onClick={(e) => this.starContact(data, index)} className="zmdi zmdi-star-outline"/>               
-                    {/* <i title="Edit" className="zmdi zmdi-edit"/> */}
+                    <i title="Star" onClick={(e) => this.starContact(data, index)} className={ data.star ? "zmdi zmdi-star star-active" : "zmdi zmdi-star-outline" }/>
                     <EditContact data={data} index={index} />                    
                     <i title="View" className="zmdi zmdi-more-vert"/>               
                 </div>
@@ -85,49 +75,51 @@ class AllContact extends Component {
                     {this.props.contacts.map((contact, i) => this.renderList(contact, i))}
                 </ul>
                 <div className={this.state.modal ? "modal show" : "modal"}>
-                    <div className="modal-content contact-view">
-                        <div className="modal-header">
-                            <div>
-                                {this.state.name}
+                    {this.state.data && 
+                        <div className="modal-content contact-view">
+                            <div className="modal-header">
+                                <div>
+                                    {this.state.data.first_name + " " + this.state.data.last_name}
+                                </div>
+                                <div>
+                                    <i title="Star contact" onClick={(e) => this.starContact(this.state.data, this.state.index)} className={ this.state.data.star ? "zmdi zmdi-star star-active" : "zmdi zmdi-star-outline" }/> 
+                                    {/* <EditContact data={this.state.data} index={this.state.index} /> */}
+                                    <i title="" className="zmdi zmdi-edit"/> 
+                                    <i title="Delete contact" onClick={(e) => this.deleteContact(e, this.state.index)} className="zmdi zmdi-more-vert"/> 
+                                    <i title="Close modal" onClick={this.toggleModal} className="zmdi zmdi-close"/> 
+                                </div>
                             </div>
-                            <div>
-                                <i title="" className="zmdi zmdi-star"/> 
-                                {/* <EditContact data={this.state.data} index={this.state.index} /> */}
-                                <i title="" className="zmdi zmdi-edit"/> 
-                                <i title="" onClick={(e) => this.deleteContact(e, this.state.index)} className="zmdi zmdi-more-vert"/> 
-                                <i title="" onClick={this.toggleModal} className="zmdi zmdi-close"/> 
+                            <div className="modal-body">
+                                <div>
+                                    <h5>Contact details</h5>
+                                    <div className="input-group">
+                                        <div className="input-group-prepend">
+                                            <span className="input-group-text">
+                                                <i className="zmdi zmdi-city-alt" />                                    
+                                            </span>
+                                        </div>
+                                        <span>{this.state.data.company}</span>
+                                    </div>
+                                    <div className="input-group">
+                                        <div className="input-group-prepend">
+                                            <span className="input-group-text">
+                                                <i className="zmdi zmdi-email" />                                    
+                                            </span>
+                                        </div>
+                                        <span>{this.state.data.email}</span>
+                                    </div>
+                                    <div className="input-group">
+                                        <div className="input-group-prepend">
+                                            <span className="input-group-text">
+                                                <i className="zmdi zmdi-phone" />
+                                            </span>
+                                        </div>
+                                        <span>{this.state.data.phone}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div className="modal-body">
-                            <div>
-                                <h5>Contact details</h5>
-                                <div className="input-group">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text">
-                                            <i className="zmdi zmdi-city-alt" />                                    
-                                        </span>
-                                    </div>
-                                    <span>{this.state.company}</span>
-                                </div>
-                                <div className="input-group">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text">
-                                            <i className="zmdi zmdi-email" />                                    
-                                        </span>
-                                    </div>
-                                    <span>{this.state.email}</span>
-                                </div>
-                                <div className="input-group">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text">
-                                            <i className="zmdi zmdi-phone" />
-                                        </span>
-                                    </div>
-                                    <span>{this.state.phone}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    }
                 </div>
             </Fragment>
         )
@@ -142,7 +134,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        deleteContact: index => dispatch(contactAction.deleteContact(index))
+        deleteContact: index => dispatch(contactAction.deleteContact(index)),
+        starContact: (contact, index) => dispatch(contactAction.starContact(contact, index)),
     }
   };
 

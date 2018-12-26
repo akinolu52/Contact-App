@@ -117,7 +117,6 @@ class EditContact extends Component {
                 </div>
                  <i title="Edit" onClick={this.toggleModal} className="zmdi zmdi-edit"/> 
             </Fragment>
-           
         )   
     }
 }

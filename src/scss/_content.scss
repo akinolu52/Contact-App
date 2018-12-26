@@ -1,28 +1,19 @@
-// .content {
-//     display: flex;
-//     flex-direction: row;
-//     flex: auto;
-//     border-right: 1px solid #000;
-// }
-// .container-fluid {
-//     display: -ms-flexbox;
-//     display: flex;
-//     -ms-flex-wrap: wrap;
-//     flex-wrap: wrap;
-//     -ms-flex-align: center;
-//     align-items: center;
-//     -ms-flex-pack: justify;
-//     justify-content: space-between;
-// }
-  
 .content {
     -ms-flex: 0 0 83.333333%;
     flex: 0 0 83.333333%;
     max-width: 83.333333%;
-    // border: 1px solid red;
-    
     padding-right: 15px;
     padding-left: 15px;
+    @include screen("small") {
+        flex: 0 0 100%;
+        -ms-flex: 0 0 100%;
+        max-width: 100%;
+        // // border-right: none;
+        // // flex-direction: column;
+        // // height: 20vh;
+        // border: 1px solid #000;
+        // justify-content: center;
+    }
 
     .float-btn {
         position:fixed;
@@ -44,7 +35,6 @@
 .contact__list {
     width: 90%;
     margin: 15px auto;
-    // border: 1px solid red;
     .empty-contact {
         flex-wrap: wrap;
         flex-direction: column;
@@ -122,7 +112,6 @@
             }
         
       }
-      
       
       @media all and (max-width: 767px) {
         .table-header {

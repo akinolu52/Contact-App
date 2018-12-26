@@ -7,19 +7,29 @@
     flex: 0 0 16.666667%;
     max-width: 16.666667%;
     border-right: 1px solid #ccc;
+    @include screen("small") {
+        display: flex;
+        flex: 0 0 100%;
+        -ms-flex: 0 0 100%;
+        max-width: 100%;
+        border-right: none;
+        flex-direction: row;
+        height: 60px;
+        justify-content: center;
+    }
 
     ul {
-        // border: 1px solid #000;
         display: flex;
         flex-direction: column;
         flex: 0 0 100%;
         flex-wrap: wrap;
         li {
-            // width: 100%;
             padding: 1rem 0 1rem 2rem;
             color: #999;
             font-weight: bold;
-            
+            @include screen("small") {
+                margin: 0.7rem 0 0.5rem 0;
+            }
             &:first-child{
                 i {
                     @extend %active-styles
@@ -28,6 +38,10 @@
                 background: #ede5fd;
                 margin: 0.7rem 0 0.5rem 0;
                 + li {
+                    
+                    @include screen("small") {
+                        border-top: none;
+                    }
                     border-top: 1px solid #ccc;
         
                 }
