@@ -13,7 +13,7 @@ class CreateContact extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
         this.handleTelChange = this.handleTelChange.bind(this);
-        this.handleTelBlur   = this.handleTelBlur .bind(this);
+        this.handleTelBlur = this.handleTelBlur.bind(this);
         this.state = {
            modal: false 
         };
@@ -37,19 +37,12 @@ class CreateContact extends Component {
         this.setState({
             phone: telNumber
         });
-        // console.log('input changed. number: ', telNumber, 'selected country: ', selectedCountry)
     }
 
     handleTelBlur(telNumber, selectedCountry) {
         this.setState({
             phone: telNumber
         });
-        // console.log(
-        //     'Focus off the ReactTelephoneInput component. Tel number entered is: ',
-        //     telNumber,
-        //     ' selected country is: ',
-        //     selectedCountry
-        //   )
     }
 
     handleChange(e) {
@@ -71,7 +64,7 @@ class CreateContact extends Component {
         if(Object.keys(errors).length === 0 && errors.constructor === Object) {
             this.toggleModal();
             this.props.createContact(contact);
-            toastr.success('Contact', `${contact.first_name + " " + contact.last_name} created successfully`)
+            toastr.success('Contact', `${contact.first_name + " " + contact.last_name} contact created successfully`)
         } else {
             if(errors.first_name_error){
                 toastr.error(errors.first_name_title, errors.first_name_error);
@@ -92,7 +85,7 @@ class CreateContact extends Component {
     render() {
         return(
             <Fragment>
-                <div id="myModal" onClick={() => console.log('clk')} className={this.state.modal ? "modal show" : "modal"}>
+                <div id="myModal" className={this.state.modal ? "modal show" : "modal"}>
                     <div className="modal-content">
                         <div className="modal-header">Create Contact</div>
                         <div className="modal-body">

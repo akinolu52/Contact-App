@@ -25,7 +25,6 @@ const updateContact = (state, action) => {
 }
 
 export default (state = [], action) => {
-
     switch (action.type) {
         case actionTypes.CREATE_CONTACT:
             return createContact(state, action.contact);
@@ -38,6 +37,15 @@ export default (state = [], action) => {
 
         case actionTypes.STAR_CONTACT:
             return updateContact(state, action);
+
+        case actionTypes.SEARCH_CONTACT:
+            let name = action.name.toLowerCase();
+            let contacts = state.filter(function(el) {
+                let el_name = el.first_name+" "+el.last_name;
+                let searchValue = el_name.toLowerCase();
+                return searchValue.indexOf(name) !== -1;
+            });
+            return contacts;
 
         default:
             return state;

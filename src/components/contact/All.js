@@ -10,12 +10,12 @@ class AllContact extends Component {
 
         this.toggleModal = this.toggleModal.bind(this);
         this.state = {
-           modal: false,
+           modal: false
         };
     }
     toggleModal() {
         this.setState({
-        modal: !this.state.modal
+            modal: !this.state.modal
         });
     }
     deleteContact(e, index){
@@ -38,7 +38,6 @@ class AllContact extends Component {
         this.props.starContact(data, index);
         toastr.info(`${data.first_name + " " + data.last_name}`, "Contact Stared!")
     }
-
     renderList(data, index){
         return(
             <li className="table-row" title="View" key={index}>
@@ -137,7 +136,6 @@ const mapDispatchToProps = (dispatch) => {
         deleteContact: index => dispatch(contactAction.deleteContact(index)),
         starContact: (contact, index) => dispatch(contactAction.starContact(contact, index)),
     }
-  };
-
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllContact);

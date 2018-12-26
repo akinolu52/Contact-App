@@ -27,3 +27,10 @@ export const starContact = (contact, id) => {
         contact, id
     };
 };
+
+export const searchContact = name => {
+    return {
+        type: actionTypes.SEARCH_CONTACT,
+        name
+    };
+};

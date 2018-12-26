@@ -130,7 +130,8 @@ nav.topbar {
         width: 100%;
         background: rgba(255, 255, 255, 0.25);
         outline: 1px solid transparent;
-        display: flex; }
+        display: flex;
+        border-radius: .25rem; }
       nav.topbar .topbar__inner .search__form #search {
         background: url(/images/search.png) no-repeat scroll 7px 7px;
         padding-left: 50px;

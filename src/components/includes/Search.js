@@ -1,39 +1,51 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import * as contactAction from '../../actions/contactAction';
+import {toastr} from 'react-redux-toastr';
 class Search extends Component {
-  // constructor(props) {
-  //   super(props);
+  constructor(props) {
+    super(props);
 
-  // }
-  // getInitialState() {
-  //   return {
-  //     displayedContacts: CONTACTS
-  //   };
+    this.state = {
+      search: ""
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+  }
 
-  // };
+  handleChange(e) {
+    this.setState({
+        [e.target.name]: e.target.value
+    });
+    this.search();
+  }
 
-  // handleSearch(event) {
-  //   var searchQuery = event.target.value.toLowerCase();
-  //   var displayedContacts = CONTACTS.filter(function(el) {
-  //     var searchValue = el.name.toLowerCase();
+  handleSearch(e) {
+    e.preventDefault();
+    this.search();
+  }
 
-  //     return searchValue.indexOf(searchQuery) !== -1;
-  //   });
-
-  //   this.setState({
-  //     displayedContacts: displayedContacts
-  //   });
-  // };
+  search() {
+    if(this.state.search !== "") {
+      this.props.searchContact(this.state.search);
+      toastr.info("Results", `Showing results for ${this.state.search}`);
+    } 
+  }
 
   render() {
     return (
-      <form className="search__form">
+      <form className="search__form" onSubmit={this.handleSearch}>
           <div>
-            <input type="search" name="search" id="search" onChange={this.handleSearch} placeholder="Search" />
+            <input type="search" name="search" id="search" onChange={this.handleChange} placeholder="Search" />
           </div>
       </form>
     );
   }
 }
+const mapDispatchToProps = (dispatch) => {
+  return {
+      searchContact: name => dispatch(contactAction.searchContact(name))
+  }
+};
 
-export default Search;
+export default connect(null, mapDispatchToProps)(Search);
