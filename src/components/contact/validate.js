@@ -11,7 +11,7 @@ export const validate = val => {
     if (!val.email) {
         errors.email_error = 'Email is a required field';
         errors.email_title = 'Required';
-    } else if (!/^.+@.+$/i.test(val.email)) {
+    } else if (!/\S+@\S+\.\S+/.test(val.email)) {
         errors.email_error = 'Email format is incorrect';
         errors.email_title = 'Invalid';
     }

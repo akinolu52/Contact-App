@@ -13,7 +13,6 @@ class App extends Component {
           preventDuplicates
           transitionIn="fadeIn"
           transitionOut="fadeOut"
-          progressBar
           closeOnToastrClick />
       </Fragment>
     );

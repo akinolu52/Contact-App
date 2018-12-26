@@ -22,7 +22,7 @@ class AllContact extends Component {
         e.preventDefault();
         this.props.deleteContact(index);
         this.toggleModal();
-
+        toastr.success("success", "Contact Deleted!")
     }
     showContact(data, index) {
         // this.setState(data, (e)=>consol.log(this.state))
@@ -80,9 +80,6 @@ class AllContact extends Component {
                                 <i className="zmdi zmdi-alert-circle-o"/>
                                 It's empty here, click on the plus button to add new contacts...
                             </p>
-                            <button
-          onClick={() => toastr.success('The title', 'The message')}
-          type="button">Toastr Success</button>
                         </div>
                     }
                     {this.props.contacts.map((contact, i) => this.renderList(contact, i))}

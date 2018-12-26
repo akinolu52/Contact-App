@@ -41,18 +41,19 @@ class EditContact extends Component {
         if(Object.keys(errors).length === 0 && errors.constructor === Object) {        
             this.toggleModal();
             this.props.editContact(contact, this.props.index);
+            toastr.info('Contact', `${contact.first_name + " " + contact.last_name} edited successfully`)
         } else {
             if(errors.first_name_error){
-                toastr.error(errors.first_name_title, errors.first_name_error)
+                toastr.error(errors.first_name_title, errors.first_name_error);
             }
             if(errors.last_name_error){
-                toastr.error(errors.last_name_title, errors.last_name_error)
+                toastr.error(errors.last_name_title, errors.last_name_error);
             }
-            if(errors.email_name_error){
-                toastr.error(errors.email_name_title, errors.email_name_error)
+            if(errors.email_error){
+                toastr.error(errors.email_title, errors.email_error);
             }
-            if(errors.phone_name_error){
-                toastr.error(errors.phone_name_title, errors.phone_name_error)
+            if(errors.phone_error){
+                toastr.error(errors.phone_title, errors.phone_error);
             }
         }
     }
