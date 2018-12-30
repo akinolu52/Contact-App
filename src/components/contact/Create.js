@@ -20,6 +20,7 @@ class CreateContact extends Component {
     }
 
     resetForm() {
+        // removing values from the state after form submission
         for (var member in this.state) {
             if(member !== "modal") 
                 this.setState({member: ''});
@@ -56,6 +57,7 @@ class CreateContact extends Component {
         // perfomr validation
         let contact = {...this.state};
         delete contact.modal;
+        // removing white space and -
         contact.phone = contact.phone.trim().replace(/-/g, '');
 
         let errors = validate(contact);
@@ -63,9 +65,11 @@ class CreateContact extends Component {
         
         if(Object.keys(errors).length === 0 && errors.constructor === Object) {
             this.toggleModal();
+            // creating contact after validating user data
             this.props.createContact(contact);
             toastr.success('Contact', `${contact.first_name + " " + contact.last_name} contact created successfully`)
         } else {
+            // showing error via toastr
             if(errors.first_name_error){
                 toastr.error(errors.first_name_title, errors.first_name_error);
             }

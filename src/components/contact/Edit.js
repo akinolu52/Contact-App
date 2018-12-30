@@ -30,12 +30,12 @@ class EditContact extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        // perfomr validation
         const contact = {};
+        // geting all the form data
         for (const field in this.refs) {
-        contact[field] = this.refs[field].value;
+            contact[field] = this.refs[field].value;
         }
-        // console.log(contact)
+        // perfomr validation        
         let errors = validate(contact);
         this.setState(errors);
         if(Object.keys(errors).length === 0 && errors.constructor === Object) {        
@@ -43,6 +43,7 @@ class EditContact extends Component {
             this.props.editContact(contact, this.props.index);
             toastr.info('Contact', `${contact.first_name + " " + contact.last_name} edited successfully`)
         } else {
+            // showing error via toastr
             if(errors.first_name_error){
                 toastr.error(errors.first_name_title, errors.first_name_error);
             }

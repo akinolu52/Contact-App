@@ -19,6 +19,7 @@ class AllContact extends Component {
         });
     }
     deleteContact(e, index){
+        // this will handle the deleting of a contact list
         e.preventDefault();
         this.props.deleteContact(index);
         this.toggleModal();

@@ -10,6 +10,7 @@ class Search extends Component {
   }
 
   handleChange(e) {
+    // perform search operstion
     this.props.searchContact(e.target.value);
   }
 
