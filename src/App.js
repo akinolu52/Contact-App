@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import Main from "./components/Main";
 import ReduxToastr from 'react-redux-toastr';
 
