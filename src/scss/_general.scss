@@ -14,9 +14,11 @@ ul{
         list-style: none;
     }
 }
-// #root {
-//     display: flex;
-// }
+.main {
+    width: 100%;
+    min-height: 400px;
+    overflow: hidden
+}
 .main__container {
     display: flex;
     min-height: 90.5vh;

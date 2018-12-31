@@ -4,6 +4,9 @@ import * as contactAction from '../../actions/contactAction';
 import {validate} from './validate';
 import {toastr} from 'react-redux-toastr';
 
+/**
+ * Class reprenstation for the edit contact component
+ */
 class EditContact extends Component {
     constructor(props) {
         super(props);
@@ -15,19 +18,29 @@ class EditContact extends Component {
            modal: false 
         };
     }
-
+    /**
+     * @summary toggles the modal display
+     */
     toggleModal() {
         this.setState({
           modal: !this.state.modal
         });
     }
-
+    /**
+     * @summary handles the change event of an input field
+     * @summary by setting the state
+     * @param  {any} e
+     */
     handleChange(e) {
         this.setState({
             [e.target.name]: e.target.value
         });
     }
-
+    /**
+     * @summary handles the submit event of a form
+     * @summary performs validation and editing of contact 
+     * @param  {any} e
+     */
     handleSubmit(e) {
         e.preventDefault();
         const contact = {};
@@ -58,7 +71,7 @@ class EditContact extends Component {
             }
         }
     }
-
+    
     render() {
         return(
             <Fragment>

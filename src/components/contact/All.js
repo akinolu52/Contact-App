@@ -4,6 +4,9 @@ import * as contactAction from '../../actions/contactAction';
 import EditContact from './Edit';
 import {toastr} from 'react-redux-toastr';
 
+/**
+ * Class reprenstation for the the displaying and grouping the contact component
+ */
 class AllContact extends Component {
     constructor(props) {
         super(props);
@@ -13,11 +16,19 @@ class AllContact extends Component {
            modal: false
         };
     }
+    /**
+     * @summary toggles the modal display
+     */
     toggleModal() {
         this.setState({
             modal: !this.state.modal
         });
     }
+    /**
+     * @summary handles the deleting a contact list
+     * @summary this is done by sending this action as a props to the reducer
+     * @param  {any, inteher} e, index
+     */
     deleteContact(e, index){
         // this will handle the deleting of a contact list
         e.preventDefault();
@@ -25,6 +36,10 @@ class AllContact extends Component {
         this.toggleModal();
         toastr.success("success", "Contact Deleted!")
     }
+    /**
+     * @summary handles the showing a single contact in a modal box
+     * @param  {any, inteher} data, index
+     */
     showContact(data, index) {
         this.setState({
             data,
@@ -32,13 +47,21 @@ class AllContact extends Component {
         });
         this.toggleModal();
     }
+    /**
+     * @summary handles the staring a single contact
+     * @summary this is done by editing the contact
+     * @param  {any, inteher} data, index
+     */
     starContact(data, index) {
         // edit the contact by setting star as true
         data.star = true;
         this.props.starContact(data, index);
         toastr.info(`${data.first_name + " " + data.last_name}`, "Contact Stared!")
     }
-
+    /**
+     * @summary handles the showing a single contact
+     * @param  {any, inteher} data, index
+     */
     renderList(data, index){
         return(
             <li className="table-row" title="View" key={index}>

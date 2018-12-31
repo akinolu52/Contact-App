@@ -1,26 +1,52 @@
+/**
+ * @summary get a tring and validate it 
+ * @param {string} values
+ * @return {string} - returns an error if validation fails errors
+ */
 export const validate = val => {
     const errors = {};
+    /**
+     * @summary check if first name is submitted
+     * @param {string} first_name
+     * @return {string} - returns an error if validation fails
+     */
     if (!val.first_name) {
-        // check if first name is submitted
         errors.first_name_error = 'First name is a required field';
         errors.first_name_title = 'Required';
     }
+    /**
+     * @summary check if last name is submitted
+     * @param {string} last_name
+     * @return {string} - returns an error if validation fails
+     */
     if (!val.last_name) {
-        // check if last name is submitted
         errors.last_name_error = 'Last name is a required field';
         errors.last_name_title = 'Required';
     }
+    /**
+     * @summary check if email address is submitted
+     * @param {string} email
+     * @return {string} - returns an error if validation fails
+     */
     if (!val.email) {
-        // check if email address is submitted
         errors.email_error = 'Email is a required field';
         errors.email_title = 'Required';
-    } else if (!/\S+@\S+\.\S+/.test(val.email)) {
-        // checks phone nummber format
+    } 
+    /**
+     * checks phone nummber format
+     * @param {string} email
+     * @return {string} - returns an error if validation fails
+     */
+    else if (!/\S+@\S+\.\S+/.test(val.email)) {
         errors.email_error = 'Email format is incorrect';
         errors.email_title = 'Invalid';
     }
+    /**
+     * @summary check if phone number is submitted
+     * @param {string} phone
+     * @return {string} - returns an error if validation fails
+     */
     if (!val.phone) {
-        // check if phone number is submitted
         errors.phone_error = 'Phone number is a required field';
         errors.phone_title = 'Required';
     }

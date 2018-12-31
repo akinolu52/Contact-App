@@ -5,6 +5,10 @@ import {validate} from './validate';
 import {toastr} from 'react-redux-toastr';
 import {ReactTelephoneInput} from 'react-telephone-input';
 require('react-telephone-input/lib/withStyles');
+
+/**
+ * Class reprenstation for the create contact component
+ */
 class CreateContact extends Component {
     constructor(props) {
         super(props);
@@ -18,40 +22,59 @@ class CreateContact extends Component {
            modal: false 
         };
     }
-
+    /**
+     * @summary : removing values from the state after form submission
+     */
     resetForm() {
-        // removing values from the state after form submission
         for (var member in this.state) {
             if(member !== "modal") 
                 this.setState({member: ''});
         }
     }
-
+    /**
+     * @summary toggles the modal display
+     */
     toggleModal() {
         this.setState({
           modal: !this.state.modal
         });
         this.resetForm();
     }
-
+    /**
+     * @summary handles the change event of an telephone field
+     * @summary by setting the state
+     * @param  {string} e
+     */
     handleTelChange(telNumber, selectedCountry) {
         this.setState({
             phone: telNumber
         });
     }
-
+    /**
+     * @summary handles the blur event of an telephone field
+     * @summary by setting the state
+     * @param  {string} e
+     */
     handleTelBlur(telNumber, selectedCountry) {
         this.setState({
             phone: telNumber
         });
     }
-
+    /**
+     * @summary handles the change event of an telephone field
+     * @summary by setting the state
+     * @param  {any} e
+     */
     handleChange(e) {
         this.setState({
             [e.target.name]: e.target.value
         });
     }
-
+    /**
+     * @summary handles the submit event of a form
+     * @summary performs validation and creating the contact 
+     * @param  {any} e
+     */
     handleSubmit(e) {
         e.preventDefault();
         // perfomr validation

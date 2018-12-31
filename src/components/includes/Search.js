@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as contactAction from '../../actions/contactAction';
-// import {toastr} from 'react-redux-toastr';
+
+/**
+ * Class reprenstation for the search contact component
+ */
 class Search extends Component {
   constructor(props) {
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
   }
-
+  /**
+   * @summary perdorms a serach operation on pervious contact list
+   * @param  {string} 
+   */
   handleChange(e) {
     // perform search operstion
     this.props.searchContact(e.target.value);

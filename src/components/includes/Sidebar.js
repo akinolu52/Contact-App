@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
 
-class Sidebar extends Component {
-  render() {
-    return (
-      <nav className="sidebar">
-        <ul>
-          <li>
-            <i className="zmdi zmdi-accounts-list-alt"/> 
-            <span>Contacts (533)</span>
+const Sidebar = () => {
+  return (
+    <nav className="sidebar">
+      <ul>
+        <li>
+          <i className="zmdi zmdi-accounts-list-alt"/> 
+          <span>Contacts (533)</span>
+        </li>
+        <li>
+          <i className="zmdi zmdi-settings"/> 
+          <span>Settings</span>
+        </li>
+        <li>
+          <i className="zmdi zmdi-help" /> 
+          <span>Help</span>
           </li>
-          <li>
-            <i className="zmdi zmdi-settings"/> 
-            <span>Settings</span>
-          </li>
-          <li>
-            <i className="zmdi zmdi-help" /> 
-            <span>Help</span>
-           </li>
-        </ul>
-      </nav>
-    );
-  }
+      </ul>
+    </nav>
+  );
 }
 
 export default Sidebar;

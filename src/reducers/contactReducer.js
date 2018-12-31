@@ -8,22 +8,37 @@ import * as actionTypes from '../actions/actionType';
 //     }, {});
 //     return Object.values(result);
 // };
-
+/**
+ * @summary remove the contact with the stated id
+ * @param  {object} state
+ * @param  {number} id
+ */
 const deleteContact = (state, id) => {
     return state.filter((data, i) => i !== id )
 };
-
+/**
+ * @summary add the new contact to the previous contacts
+ * @param  {object} prevState
+ * @param  {object} newState
+ */
 const createContact = (prevState, newState) => {
     return [
         ...prevState, Object.assign({}, newState) 
     ];
 };
-
+/**
+ * @summary update the contact by deleting and creating a new contact
+ * @param  {object} state
+ * @param  {string} action
+ */
 const updateContact = (state, action) => {
     let newState = deleteContact(state, action.id);
     return createContact(newState, action.contact);
 };
-
+/**
+ * @param  {array} state=[]
+ * @param  {object} action
+ */
 export default (state = [], action) => {
     switch (action.type) {
         case actionTypes.CREATE_CONTACT:
